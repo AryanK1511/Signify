@@ -1,4 +1,4 @@
-from app import app
+from app import app, socketio
 from flask import jsonify, request
 import time
 from ..utils import assistant
@@ -13,10 +13,12 @@ def handle_gesture():
     gesture_name = data.get('gesture', 'No gesture found')
 
     # Log the received gesture
-    print(f"Received gesture: {gesture_name}")
+    # print(f"Received gesture: {gesture_name}")
 
     # Call the AI assistant API
-    assistant.call_api(gesture_name)
+    # assistant.call_api(gesture_name)
+
+    socketio.emit('gesture_response', {'message': gesture_name})
 
     # Return a response to the caller
     return jsonify({'message': 'Gesture processed successfully', 'received_gesture': gesture_name}), 200
