@@ -21,8 +21,6 @@ It is a machine learning app designed to offer AI assistance to individuals who 
 
 ## Resources
 
-- [Tensorflow](https://www.tensorflow.org)
-- [Google Mediapipe](https://developers.google.com/mediapipe)
 - [Gesture recognition guide for Python](https://developers.google.com/mediapipe/solutions/vision/gesture_recognizer/python)
 - [Hand gesture recognition model customization guide](https://developers.google.com/mediapipe/solutions/customization/gesture_recognizer)
 - [Udemy complete AI and ML Bootcamp by ZTM](https://www.udemy.com/share/102vAM3@uzvhf-FWASuZvecZ9RCJyF9n25CqgKAtCSlxnOch3PB_A_F7ZEdAXJ9b6V1QUXEo/)
