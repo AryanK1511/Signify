@@ -1,25 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-const weatherIcons = {
-  "01d": "./images/Main/weather/sun.png",
-  "01n": "./images/Main/weather/sun.png",
-  "02d": "./images/Main/weather/cloud.png",
-  "02n": "./images/Main/weather/cloud.png",
-  "03d": "./images/Main/weather/two.png",
-  "03n": "./images/Main/weather/two.png",
-  "04d": "./images/Main/weather/two.png",
-  "04n": "./images/Main/weather/two.png",
-  "09d": "./images/Main/weather/rain.png",
-  "09n": "./images/Main/weather/rain.png",
-  "10d": "./images/Main/weather/rain.png",
-  "10n": "./images/Main/weather/rain.png",
-  "11d": "./images/Main/weather/thunderstorm.png",
-  "11n": "./images/Main/weather/thunderstorm.png",
-  "13d": "./images/Main/weather/snowflake.png",
-  "13n": "./images/Main/weather/snowflake.png",
-  "50d": "./images/Main/weather/mist.png",
-  "50n": "./images/Main/weather/mist.png",
-};
+import weatherIcons from "./WeatherIconsData";
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -48,6 +28,7 @@ const Weather = () => {
       })
       .catch((error) => console.log(error));
   }
+
   function error() {
     console.log("Unable to receive your location");
   }
@@ -75,13 +56,57 @@ const Weather = () => {
           className="w-[200px]"
         />
       )}
-      <p className="p-12">
-        {weather && weather.main && `${Math.round(weather.main.temp)}°C`}
-      </p>
-      <p>{weather && weather.name}</p>
-      <p>{weather && weather.weather && weather.weather[0].icon}</p>
+      {weather && weather.main && (
+        <p className="p-12">{`${Math.round(weather.main.temp)}°C`}</p>
+      )}
+      {weather && weather.name && <p>{weather.name}</p>}
+      <div className="flex pt-10">
+        {weather && weather.main && (
+          <WeatherData
+            icon={"./images/Main/weather/humidity.png"}
+            data={weather.main.humidity}
+            metric={"%"}
+            title={"Humidity"}
+          />
+        )}
+        {weather && weather.wind && (
+          <WeatherData
+            icon={"./images/Main/weather/wind.png"}
+            data={weather.wind.speed}
+            metric={"m/s"}
+            title={"Wind speed"}
+          />
+        )}
+      </div>
     </div>
   );
 };
+
+function WeatherData({ icon, data, metric, title }) {
+  return (
+    <div
+      className="
+      p-20
+    flex
+    justify-center
+    items-center
+    "
+    >
+      <img src={icon} alt={`${title} icon`} className="w-[120px]" />
+      <div
+        className="
+      flex
+      flex-col
+      items-start
+      text-3xl
+      pl-8
+      "
+      >
+        <p>{`${data} ${metric}`}</p>
+        <p>{title}</p>
+      </div>
+    </div>
+  );
+}
 
 export default Weather;

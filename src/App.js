@@ -1,6 +1,6 @@
 import React from "react";
 // import Main from "./Main";
-import Weather from "./Weather";
+import Weather from "./Weather/Weather";
 
 function App() {
   return (
