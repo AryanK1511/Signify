@@ -1,10 +1,11 @@
 import React from "react";
-import Main from "./Main";
+// import Main from "./Main";
+import Weather from "./Weather";
 
 function App() {
   return (
     <div className="App">
-      <Main name="David" />
+      <Weather />
     </div>
   );
 }
