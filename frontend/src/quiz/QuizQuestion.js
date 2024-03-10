@@ -1,11 +1,11 @@
 
 import React from "react";
 
-const QuizQuestion = ({questionIndex}) => {
+const QuizQuestion = ({questionIndex, questionText}) => {
 return(
-    <>
-    Quiz Question
-    </>
+    <div className="question text-lg font-semibold mb-4">
+    {questionText}
+    </div>
 )
 }
 
