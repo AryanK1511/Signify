@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { gestureAtom } from "./store";
 import { useEffect } from "react";
+import GESTURES from "./gesture/gestureLabels";
 
 function Main({ name }) {
   const [gesture] = useAtom(gestureAtom);
