@@ -1,30 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
-// import Main from "./Main";
-// import Test from "./test/test";
-import Weather from "./Weather/Weather";
-import { useAtom } from 'jotai';
-import { gestureAtom } from './store';
 
-// Connect to the server using a WebSocket connection
 const socket = io("http://localhost:8000");
-import Quiz from "./quiz/Quiz";
 
 function App() {
-  // State to hold the data received from the server
-  // Use the gestureAtom
-  const [, setGesture] = useAtom(gestureAtom);
+  const [gestureData, setGestureData] = useState({});
 
-  // Set up the WebSocket connection and event listeners
   useEffect(() => {
     socket.on("connect", () => {
       console.log("Connected to WebSocket server");
     });
 
-    // Listen for incoming data
     socket.on("gesture_response", (data) => {
       console.log("Received data:", data);
-      setGesture(data); // Update state to reflect new data
+      setGestureData(data); // Update state to reflect new data
     });
 
     // Cleanup on component unmount
@@ -36,7 +25,6 @@ function App() {
 
   return (
     <div className="App">
-      <Quiz />
     </div>
   );
 }

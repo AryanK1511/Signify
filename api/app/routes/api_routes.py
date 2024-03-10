@@ -13,7 +13,7 @@ def handle_gesture():
     print(f"Received gesture: {gesture_name}")
 
     # Call the AI assistant API which will process the gesture
-    assistant.call_api(gesture_name)
+    # assistant.call_api(gesture_name)
     socketio.emit('gesture_response', {'message': gesture_name})
 
     # Return a response to the caller
