@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 // import Main from "./Main";
-// import Test from "./test/test";
 import Weather from "./Weather/Weather";
+import Lamp from './Lamp/lamp';
 import { useAtom } from 'jotai';
 import { gestureAtom } from './store';
+// import Quiz from "./quiz/Quiz";
 
 // Connect to the server using a WebSocket connection
 const socket = io("http://localhost:8000");
-import Quiz from "./quiz/Quiz";
 
 function App() {
   // State to hold the data received from the server
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <Quiz />
+      <Lamp />
     </div>
   );
 }
