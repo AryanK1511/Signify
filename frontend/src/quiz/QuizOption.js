@@ -5,7 +5,7 @@ const QuizOption = ({ option, onSelect }) => {
 
   return (
     <button onClick={()=>onSelect(option)}>
-        <h2>{option}</h2>
+        <h2>{option?"TRUE":"FALSE"}</h2>
     </button>
   );
 };
