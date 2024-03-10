@@ -1,11 +1,13 @@
 import React from "react";
 
-const QuizOption = ({option}) => {
-return(
-    <>
-    option is : {option}
-    </>
-)
-}
+const QuizOption = ({ option, onSelect }) => {
+  const imagePath = `/images/Main/quiz/${option}_gesture.png`;
+
+  return (
+    <button onClick={()=>onSelect(option)}>
+        <h2>{option}</h2>
+    </button>
+  );
+};
 
 export default QuizOption;
