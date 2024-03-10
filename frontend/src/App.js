@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
-// import Main from "./Main";
-// import Test from "./test/test";
+import React, { useState, useEffect } from "react";
+import io from "socket.io-client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Main from "./Main";
+import Quiz from "./quiz/Quiz";
 import Weather from "./Weather/Weather";
-import { useAtom } from 'jotai';
-import { gestureAtom } from './store';
+import { useAtom } from "jotai";
+import { gestureAtom } from "./store";
 
 // Connect to the server using a WebSocket connection
 const socket = io("http://localhost:8000");
-import Quiz from "./quiz/Quiz";
 
 function App() {
   // State to hold the data received from the server
@@ -35,9 +35,16 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Quiz />
-    </div>
+    // <div className="App">
+    //   <Main />
+    // </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/weather" element={<Weather />} />
+      </Routes>
+    </Router>
   );
 }
 

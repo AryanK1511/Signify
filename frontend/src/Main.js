@@ -1,4 +1,28 @@
+import { useAtom } from "jotai";
+import { gestureAtom } from "./store";
+import { useEffect } from "react";
+
 function Main({ name }) {
+  const [gesture] = useAtom(gestureAtom);
+
+  useEffect(() => {
+    handleGesture();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gesture]);
+
+  function handleGesture() {
+    switch (gesture) {
+      case "gesture1":
+        console.log("");
+        break;
+      case "gesture2":
+        console.log("");
+        break;
+      default:
+        console.log("");
+    }
+  }
+
   return (
     <div
       className="
