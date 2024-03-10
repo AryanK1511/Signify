@@ -36,19 +36,9 @@ function App() {
   }, []);
 
   return (
-    // <div className="App">
-    //   <Main />
-    // </div>
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<Main />} />
-    //     <Route path="/quiz" element={<Quiz />} />
-    //     <Route path="/weather" element={<Weather />} />
-    //   </Routes>
-    // </Router>
-    <>
-    <Lamp />
-    </>
+    <div className="App">
+      <Lamp />
+    </div>
   );
 }
 
