@@ -8,6 +8,7 @@ import { gestureAtom } from './store';
 
 // Connect to the server using a WebSocket connection
 const socket = io("http://localhost:8000");
+import Quiz from "./quiz/Quiz";
 
 function App() {
   // State to hold the data received from the server
@@ -35,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <Weather />
+      <Quiz />
     </div>
   );
 }
