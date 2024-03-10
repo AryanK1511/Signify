@@ -1,10 +1,31 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { changeLampState } from "./lamp_operations";
+import { useAtom } from "jotai";
+import { gestureAtom } from "../store";
 
-function Lamp() {
-  const [lampLight, setLampLight] = useState("OFF");
-  return (
-    <div
-      className="
+// ===== Lamp component =====
+const Lamp = () => {
+    // State to hold the data received from the server
+    const [gesture] = useAtom(gestureAtom);
+    const [lampLight, setLampLight] = useState("OFF");
+
+    // Set up the WebSocket connection and event listeners
+    useEffect(() => {
+        if (gesture !== null) {
+            if (gesture.toLowerCase() === "thumb_up") {
+                setLampLight("ON");
+            } else {
+                setLampLight("OFF");
+            }
+            changeLampState(gesture);
+        }
+    }, [gesture]);
+
+
+    // Create a use effect such that whenever the lamplight changes, I call a python script
+    return (
+        <div
+            className="
     flex
      flex-col
      justify-center
@@ -18,9 +39,9 @@ function Lamp() {
       font-medium
       pt-10
       "
-    >
-      <div
-        className="
+        >
+            <div
+                className="
       w-[250px]
       h-[250px]
       flex
@@ -29,12 +50,12 @@ function Lamp() {
       bg-[#D9D9D9]
       rounded-full
       "
-      >
-        <img src="./images/Main/lamp/light1.png" alt="lamp" className="p-10" />
-      </div>
-      <p className="pt-10">{lampLight}</p>
-    </div>
-  );
+            >
+                <img src="./images/Main/lamp/light1.png" alt="lamp" className="p-10" />
+            </div>
+            <p className="pt-10">{lampLight}</p>
+        </div>
+    );
 }
 
 export default Lamp;
