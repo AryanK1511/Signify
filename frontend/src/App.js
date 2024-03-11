@@ -24,7 +24,7 @@ function App() {
     // Listen for incoming data
     socket.on("gesture_response", (data) => {
       console.log("Received data:", data);
-      setGesture(data.gesture); // Update state to reflect new data
+      setGesture(data.gesture); // Update state to reflect newer data
     });
 
     // Cleanup on component unmount
