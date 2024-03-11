@@ -38,10 +38,13 @@ function Main({ name }) {
      text-center
      "
     >
-      <h1 className="leading-relaxed text-5xl">
+      {/* <h1 className="leading-relaxed text-5xl">
         Hey {name}! <br /> How can I help you?
+      </h1> */}
+      <h1 className="leading-relaxed text-5xl">
+        Detected Gesture: <br /> {gesture ? gesture : "None"}
       </h1>
-      <MainIcon
+      {/* <MainIcon
         imgUrl={"./images/Main/cloud.png"}
         imgAlt={"Weather Icon"}
         title="Weather"
@@ -64,7 +67,7 @@ function Main({ name }) {
         imgAlt={"T-Rex Icon"}
         title="T-Rex"
         position={"bottom-16 right-16"}
-      />
+      /> */}
     </div>
   );
 }
