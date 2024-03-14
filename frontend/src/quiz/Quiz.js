@@ -85,7 +85,7 @@ const Quiz = () => {
   // Quiz is over
   if (currentQuestion == QUESTIONS.length) {
     return (
-      <div className="p-11 flex flex-col items-center justify-center min-h-screen ">
+      <div className="p-11 flex flex-col items-center justify-center min-h-screen bg-[#190C40]">
         <QuizQuestion questionText="Thanks for taking the quiz!" />
         <br />
         <HomeButton onClick={handleNextQuestion} />
@@ -95,7 +95,7 @@ const Quiz = () => {
 
   // Quiz is active
   return (
-    <div className="p-11 flex flex-col items-center justify-center min-h-screen ">
+    <div className="p-11 flex flex-col items-center justify-center min-h-screen bg-[#190C40]">
       <QuizQuestion
         questionIndex={currentQuestion}
         questionText={QUESTIONS[currentQuestion].text}
