@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import QuizQuestion from "./QuizQuestion";
 import QuizOption from "./QuizOption";
 import QuizExp from "./QuizExp";
@@ -30,6 +30,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
+  const navigate = useNavigate();
 
   const handleAnswerSelect = (answer) => {
     console.log(answer);
@@ -42,9 +43,10 @@ const Quiz = () => {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Handle quiz end - for simplicity, we'll just reset
-      alert("Quiz completed! Restarting.");
+
       setCurrentQuestion(0);
       //GO BACK TO HOMEPAGE
+      navigate('/');
     }
     setSelectedAnswer(null);
     setShowExplanation(false);
@@ -53,21 +55,22 @@ const Quiz = () => {
   // Quiz is over
   if (currentQuestion == QUESTIONS.length) {
     return (
-      <>
-        Thanks for taking the quiz <br />
-        <button onClick={handleNextQuestion}>Back to home</button>
-      </>
+      <div className="p-11 flex flex-col items-center justify-center min-h-screen ">
+        <QuizQuestion questionText="Thanks for taking the quiz!"/><br />
+        <button onClick={handleNextQuestion} style={{ backgroundColor: '#31304D', color: '#F0ECE5' }} className="mt-5 px-4 py-2 text-4xl rounded-lg shadow hover:bg-blue-600 transition-colors duration-150">Back to Home</button>
+
+      </div>
     );
   }
 
   // Quiz is active
   return (
-    <div className="quiz max-w-lg mx-auto p-4">
+    <div className="p-11 flex flex-col items-center justify-center min-h-screen ">
       <QuizQuestion
         questionIndex={currentQuestion}
         questionText={QUESTIONS[currentQuestion].text}
       />
-      <div className="options">
+      <div className="options flex justify-center gap-4">
         <QuizOption
           option={true}
           onSelect={handleAnswerSelect}
@@ -86,6 +89,7 @@ const Quiz = () => {
           selectedAnswer={selectedAnswer}
           questionExplanation={QUESTIONS[currentQuestion].explanation}
           onNext={handleNextQuestion}
+          className="flex flex-col items-center justify-center min-h-screen"
         />
       )}
     </div>
