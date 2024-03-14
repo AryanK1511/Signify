@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import weatherIcons from "./WeatherIconsData";
+import HomeButton from "../Main/HomeButton";
 
 // ===== Weather component =====
 const Weather = () => {
   // State to hold the data received from the API
   const [weather, setWeather] = useState(null);
   const API_WEATHER = "30485a4ae2910822e4d10c277d0f92b4";
+  const [pageLoaded, setPageLoaded] = useState(false);
 
   // GET WEATHER
   useEffect(() => {
@@ -26,6 +28,7 @@ const Weather = () => {
       .then((response) => response.json())
       .then((data) => {
         setWeather(data);
+        setPageLoaded(true);
         console.log(data);
       })
       .catch((error) => console.log(error));
@@ -39,47 +42,52 @@ const Weather = () => {
   return (
     <div
       className="
-    flex
-     flex-col
-     justify-center
-     items-center
-     w-screen
-     h-screen
-     bg-[#190C40]
-     text-white
-     text-center
-     text-6xl
-      font-medium"
+        flex
+        flex-col
+        justify-center
+        items-center
+        w-screen
+        h-screen
+        bg-[#190C40]
+        text-white
+        text-center
+        text-6xl
+        font-medium"
     >
-      {weather && weather.weather && (
-        <img
-          src={weatherIcons[weather.weather[0].icon]}
-          alt="Current weather icon"
-          className="w-[200px]"
-        />
+      {pageLoaded && (
+        <>
+          {weather && weather.weather && (
+            <img
+              src={weatherIcons[weather.weather[0].icon]}
+              alt="Current weather icon"
+              className="w-[200px]"
+            />
+          )}
+          {weather && weather.main && (
+            <p className="p-12">{`${Math.round(weather.main.temp)}°C`}</p>
+          )}
+          {weather && weather.name && <p>{weather.name}</p>}
+          <div className="flex pt-10">
+            {weather && weather.main && (
+              <WeatherData
+                icon={"./images/Main/weather/humidity.png"}
+                data={weather.main.humidity}
+                metric={"%"}
+                title={"Humidity"}
+              />
+            )}
+            {weather && weather.wind && (
+              <WeatherData
+                icon={"./images/Main/weather/wind.png"}
+                data={weather.wind.speed}
+                metric={"m/s"}
+                title={"Wind speed"}
+              />
+            )}
+          </div>
+          <HomeButton />
+        </>
       )}
-      {weather && weather.main && (
-        <p className="p-12">{`${Math.round(weather.main.temp)}°C`}</p>
-      )}
-      {weather && weather.name && <p>{weather.name}</p>}
-      <div className="flex pt-10">
-        {weather && weather.main && (
-          <WeatherData
-            icon={"./images/Main/weather/humidity.png"}
-            data={weather.main.humidity}
-            metric={"%"}
-            title={"Humidity"}
-          />
-        )}
-        {weather && weather.wind && (
-          <WeatherData
-            icon={"./images/Main/weather/wind.png"}
-            data={weather.wind.speed}
-            metric={"m/s"}
-            title={"Wind speed"}
-          />
-        )}
-      </div>
     </div>
   );
 };

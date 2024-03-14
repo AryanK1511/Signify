@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import QuizQuestion from "./QuizQuestion";
 import QuizOption from "./QuizOption";
 import QuizExp from "./QuizExp";
 import { useAtom } from "jotai";
 import { gestureAtom } from "../store";
+import HomeButton from "../Main/HomeButton";
 
 // ===== Questions =====
 const QUESTIONS = [
@@ -22,7 +23,7 @@ const QUESTIONS = [
     text: "An octopus has three hearts",
     answer: true,
     explanation: "Octopus has one main, and two additional hearts",
-  }
+  },
 ];
 
 // ===== Quiz Component =====
@@ -34,7 +35,7 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
-  
+
   // Navigate to the next question
   const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ const Quiz = () => {
           console.log("No gesture recognized");
       }
     }
-  }, [gesture])
+  }, [gesture]);
 
   // Event handlers
   const handleAnswerSelect = (answer) => {
@@ -71,10 +72,10 @@ const Quiz = () => {
         setCurrentQuestion(currentQuestion + 1);
       } else {
         // Handle quiz end - for simplicity, we'll just reset
-  
+
         setCurrentQuestion(0);
         //GO BACK TO HOMEPAGE
-        navigate('/');
+        navigate("/");
       }
       setSelectedAnswer(null);
       setShowExplanation(false);
@@ -84,17 +85,17 @@ const Quiz = () => {
   // Quiz is over
   if (currentQuestion == QUESTIONS.length) {
     return (
-      <div className="p-11 flex flex-col items-center justify-center min-h-screen ">
-        <QuizQuestion questionText="Thanks for taking the quiz!"/><br />
-        <button onClick={handleNextQuestion} style={{ backgroundColor: '#31304D', color: '#F0ECE5' }} className="mt-5 px-4 py-2 text-4xl rounded-lg shadow hover:bg-blue-600 transition-colors duration-150">Back to Home</button>
-
+      <div className="p-11 flex flex-col items-center justify-center min-h-screen bg-[#190C40]">
+        <QuizQuestion questionText="Thanks for taking the quiz!" />
+        <br />
+        <HomeButton onClick={handleNextQuestion} />
       </div>
     );
   }
 
   // Quiz is active
   return (
-    <div className="p-11 flex flex-col items-center justify-center min-h-screen ">
+    <div className="p-11 flex flex-col items-center justify-center min-h-screen bg-[#190C40]">
       <QuizQuestion
         questionIndex={currentQuestion}
         questionText={QUESTIONS[currentQuestion].text}

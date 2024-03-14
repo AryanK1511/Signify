@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import io from "socket.io-client";
-import Lamp from "./Lamp/Lamp";
+import Lamp from "./Lamp/lamp";
 import Main from "./Main/Main";
 import Weather from "./Weather/Weather";
 import Quiz from "./Quiz/Quiz";

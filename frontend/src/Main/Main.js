@@ -1,40 +1,66 @@
+import React, { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { gestureAtom } from "../store";
-import { useEffect } from "react";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { LuCloudSun } from "react-icons/lu";
 import { MdOutlineQuiz } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 // ===== Main component =====
-function Main({ name }) {
-  const [gesture] = useAtom(gestureAtom);
+function Main() {
+  // Navigate to the next question
   const navigate = useNavigate();
 
-  useEffect(() => {
-    handleGesture();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gesture]);
+  // State to hold the data received from the server
+  const [gesture, setGesture] = useAtom(gestureAtom);
 
+  // State to manage the highlight
+  const [highlight, setHighlight] = useState("");
+
+  // Set up the WebSocket connection and event listeners
+  useEffect(() => {
+    if (gesture === null) return;
+
+    if (
+      gesture.toLowerCase() === "open_palm" ||
+      gesture.toLowerCase() === "thumb_up" ||
+      gesture.toLowerCase() === "thumb_down"
+    ) {
+      handleGesture();
+    } else {
+      if (gesture.toLowerCase() === "iloveyou") {
+        navigate(`/${highlight}`);
+      }
+    }
+  }, [gesture, highlight]);
+
+  // Event handlers
   function handleGesture() {
-    switch (gesture) {
-      case "gesture1":
-        console.log("");
+    switch (gesture.toLowerCase()) {
+      case "thumb_up":
+        setHighlight("light");
         break;
-      case "gesture2":
-        console.log("");
+      case "thumb_down":
+        setHighlight("quiz");
+        break;
+      case "open_palm":
+        setHighlight("weather");
         break;
       default:
-        console.log("");
+        break;
     }
+
+    setGesture(null); // Reset the gesture
   }
 
   return (
-    <div class="flex bg-[#190C40] w-screen h-screen">
+    <div class="flex bg-[#190C40] w-screen h-screen overflow-hidden">
       <div class="flex-1 flex items-center justify-center p-12">
         <div>
-          <h1 class="text-8xl font-semibold pb-4 text-white">Hey Jeff!</h1>
-          <p className="text-5xl text-white">What can I help you with today?</p>
+          <h1 class="text-8xl font-semibold pb-4 text-white">Hey <span class="text-[#00BCD4]">Jeff!</span></h1>
+          <p className="text-5xl text-white pt-5">
+            What can I help you with today?
+          </p>
         </div>
       </div>
 
