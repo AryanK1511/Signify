@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import QuizQuestion from "./QuizQuestion";
 import QuizOption from "./QuizOption";
 import QuizExp from "./QuizExp";
+import { useAtom } from "jotai";
+import { gestureAtom } from "../store";
 
-
+// ===== Questions =====
 const QUESTIONS = [
   {
     text: "Sharks are mammals",
@@ -20,36 +22,63 @@ const QUESTIONS = [
     text: "An octopus has three hearts",
     answer: true,
     explanation: "Octopus has one main, and two additional hearts",
-  },
-  // { text: "Goldfish have a two second memory", answer: false, explanation: "Their memories can actually last for months" },
-  // { text: "The first animal sent into space was a monkey", answer: false, explanation: "Correct! So are peaches and plums" },
-  // { text: "Hot and cold water sound the same when poured", answer: false, explanation: "They sound different due to the fact that hot water has a higher viscosity than cold water" },
+  }
 ];
 
+// ===== Quiz Component =====
 const Quiz = () => {
+  // State to hold the data received from the server
+  const [gesture] = useAtom(gestureAtom);
+
+  // State to manage the quiz
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
+  
+  // Navigate to the next question
   const navigate = useNavigate();
 
+  // Set up the WebSocket connection and event listeners
+  useEffect(() => {
+    if (gesture !== null) {
+      switch (gesture.toLowerCase()) {
+        case "thumb_up":
+          handleAnswerSelect(true);
+          break;
+        case "thumb_down":
+          handleAnswerSelect(false);
+          break;
+        case "open_palm":
+          handleNextQuestion();
+          break;
+        default:
+          console.log("No gesture recognized");
+      }
+    }
+  }, [gesture])
+
+  // Event handlers
   const handleAnswerSelect = (answer) => {
     console.log(answer);
     setSelectedAnswer(answer);
     setShowExplanation(true);
   };
 
+  // Navigate to the next question
   const handleNextQuestion = () => {
-    if (currentQuestion < QUESTIONS.length) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      // Handle quiz end - for simplicity, we'll just reset
-
-      setCurrentQuestion(0);
-      //GO BACK TO HOMEPAGE
-      navigate('/');
+    if (selectedAnswer !== null) {
+      if (currentQuestion < QUESTIONS.length) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        // Handle quiz end - for simplicity, we'll just reset
+  
+        setCurrentQuestion(0);
+        //GO BACK TO HOMEPAGE
+        navigate('/');
+      }
+      setSelectedAnswer(null);
+      setShowExplanation(false);
     }
-    setSelectedAnswer(null);
-    setShowExplanation(false);
   };
 
   // Quiz is over
