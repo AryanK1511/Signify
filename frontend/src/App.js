@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import io from "socket.io-client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./Main";
-import Quiz from "./quiz/Quiz";
+import Lamp from "./Lamp/Lamp";
+import Main from "./Main/Main";
 import Weather from "./Weather/Weather";
 import { useAtom } from "jotai";
 import { gestureAtom } from "./store";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Connect to the server using a WebSocket connection
 const socket = io("http://localhost:8000");
 
+// ===== Main App component =====
 function App() {
   // State to hold the data received from the server
-  // Use the gestureAtom
   const [, setGesture] = useAtom(gestureAtom);
 
   // Set up the WebSocket connection and event listeners
@@ -24,7 +24,7 @@ function App() {
     // Listen for incoming data
     socket.on("gesture_response", (data) => {
       console.log("Received data:", data);
-      setGesture(data); // Update state to reflect new data
+      setGesture(data.gesture); // Update state to reflect newer data
     });
 
     // Cleanup on component unmount
@@ -35,16 +35,15 @@ function App() {
   }, []);
 
   return (
-    // <div className="App">
-    //   <Main />
-    // </div>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/weather" element={<Weather />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/weather" element={<Weather />} />
+          <Route path="/light" element={<Lamp />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

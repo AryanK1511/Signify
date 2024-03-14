@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import weatherIcons from "./WeatherIconsData";
-import { useAtom } from "jotai";
-import { gestureAtom } from "../store";
 
 const Weather = () => {
-  const [gesture] = useAtom(gestureAtom);
   const [weather, setWeather] = useState(null);
   const API_WEATHER = "30485a4ae2910822e4d10c277d0f92b4";
 
@@ -52,7 +49,6 @@ const Weather = () => {
      text-6xl
       font-medium"
     >
-      <h1 className="p-12">Gesture Received: {gesture.message}</h1>
       {weather && weather.weather && (
         <img
           src={weatherIcons[weather.weather[0].icon]}
