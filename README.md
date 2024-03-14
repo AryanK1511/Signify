@@ -8,16 +8,6 @@ It is a machine learning app designed to offer AI assistance to individuals who 
     <img src="./assets/logo.png" alt="Signify Logo" width="400">
 </div>
 
-## Tools used
-
-- [Python](https://docs.python.org/3/)
-- [MediaPipe](https://google.github.io/mediapipe/)
-- [TensorFlow](https://www.tensorflow.org/overview)
-- [Anaconda](https://docs.anaconda.com/)
-- [Flask](https://flask.palletsprojects.com/)
-- [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/)
-- [OpenCV](https://docs.opencv.org/master/)
-
 ## Running the project locally
 
 ### Running the Computer Vision Notebook
@@ -115,6 +105,40 @@ Run the operations below using your terminal. The directory should be the root d
     ```bash
     npm start
     ```
+
+## How to use
+
+### Home Page
+
+- **`Thumbs Up` Gesture:** Open up the page to control lights using gestures.
+- **`Thumbs Down` Gesture:** Open up the page to play the quiz game using gestures.
+- **`Thumbs Up` Gesture:** Open up the page to check the weather in your area.
+
+### Light Control Page
+
+- **`Thumbs Up` Gesture:** Turn the light `ON` (`OFF` by default).
+- **`Thumbs Down` Gesture:** Turn the light `OFF`.
+- **`Closed Fist` Gesture:** Go back to the home page.
+
+### Quiz Page
+
+- **`Thumbs Up` Gesture:** Turn the light `ON` (`OFF` by default).
+- **`Thumbs Down` Gesture:** Turn the light `OFF`.
+- **`Closed Fist` Gesture:** Go back to the home page.
+
+### Weather Page
+
+- **`Closed Fist` Gesture:** Go back to the home page.
+
+## Tools used
+
+- [Python](https://docs.python.org/3/)
+- [MediaPipe](https://google.github.io/mediapipe/)
+- [TensorFlow](https://www.tensorflow.org/overview)
+- [Anaconda](https://docs.anaconda.com/)
+- [Flask](https://flask.palletsprojects.com/)
+- [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/)
+- [OpenCV](https://docs.opencv.org/master/)
 
 ## Resources
 

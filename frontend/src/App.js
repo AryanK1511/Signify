@@ -24,8 +24,13 @@ function App() {
 
     // Listen for incoming data
     socket.on("gesture_response", (data) => {
-      console.log("Received data:", data);
+      // console.log("Received data:", data);
       setGesture(data.gesture); // Update state to reflect newer data
+
+      // If the gesture is a closed fist, navigate to the homepage
+      if (data.gesture.toLowerCase() === "closed_fist") {
+        window.location.href = "/";
+      }
     });
 
     // Cleanup on component unmount

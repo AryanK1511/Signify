@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import weatherIcons from "./WeatherIconsData";
 
+// ===== Weather component =====
 const Weather = () => {
+  // State to hold the data received from the API
   const [weather, setWeather] = useState(null);
   const API_WEATHER = "30485a4ae2910822e4d10c277d0f92b4";
 
