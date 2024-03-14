@@ -122,8 +122,9 @@ Run the operations below using your terminal. The directory should be the root d
 
 ### Quiz Page
 
-- **`Thumbs Up` Gesture:** Turn the light `ON` (`OFF` by default).
-- **`Thumbs Down` Gesture:** Turn the light `OFF`.
+- **`Thumbs Up` Gesture:** Select the `true` option.
+- **`Thumbs Down` Gesture:** Select the `false` option.
+- **`Open Palm` Gesture:** Go to the next question if you have answered a question already.
 - **`Closed Fist` Gesture:** Go back to the home page.
 
 ### Weather Page
