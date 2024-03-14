@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { gestureAtom } from "../store";
-import { HiOutlineLightBulb} from "react-icons/hi";
+import { HiOutlineLightBulb } from "react-icons/hi";
 import { CiCloudMoon } from "react-icons/ci";
 import { MdOutlineQuiz } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,11 @@ function Main() {
   useEffect(() => {
     if (gesture === null) return;
 
-    if (gesture.toLowerCase() === "open_palm" || gesture.toLowerCase() === "thumb_up" || gesture.toLowerCase() === "thumb_down") {
+    if (
+      gesture.toLowerCase() === "open_palm" ||
+      gesture.toLowerCase() === "thumb_up" ||
+      gesture.toLowerCase() === "thumb_down"
+    ) {
       handleGesture();
     } else {
       if (gesture.toLowerCase() === "iloveyou") {
@@ -50,26 +54,43 @@ function Main() {
   }
 
   return (
-    <div class="flex bg-[#190C40] w-screen h-screen">
+    <div class="flex bg-[#190C40] w-screen h-screen overflow-hidden">
       <div class="flex-1 flex items-center justify-center p-12">
         <div>
           <h1 class="text-8xl font-semibold pb-4 text-white">Hey Jeff!</h1>
-          <p className="text-5xl text-white">What can I help you with today?</p>
+          <p className="text-5xl text-white pt-5">
+            What can I help you with today?
+          </p>
         </div>
       </div>
 
       <div class="flex-1 flex flex-col items-center justify-center gap-10">
-        <button onClick={() => navigate('/light')} class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${highlight === 'light' ? 'ring-8 ring-cyan-500' : ''}`}>
+        <button
+          onClick={() => navigate("/light")}
+          class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${
+            highlight === "light" ? "ring-8 ring-cyan-500" : ""
+          }`}
+        >
           <HiOutlineLightBulb size="8em" />
           Light
         </button>
 
-        <button onClick={() => navigate('/weather')} class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${highlight === 'weather' ? 'ring-8 ring-cyan-500' : ''}`}>
+        <button
+          onClick={() => navigate("/weather")}
+          class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${
+            highlight === "weather" ? "ring-8 ring-cyan-500" : ""
+          }`}
+        >
           <CiCloudMoon size="8em" />
           Weather
         </button>
 
-        <button onClick={() => navigate('/quiz')} class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${highlight === 'quiz' ? 'ring-8 ring-cyan-500' : ''}`}>
+        <button
+          onClick={() => navigate("/quiz")}
+          class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${
+            highlight === "quiz" ? "ring-8 ring-cyan-500" : ""
+          }`}
+        >
           <MdOutlineQuiz size="8em" />
           Quiz
         </button>
