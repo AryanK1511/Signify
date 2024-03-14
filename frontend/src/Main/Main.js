@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { gestureAtom } from "../store";
 import { HiOutlineLightBulb } from "react-icons/hi";
-import { CiCloudMoon } from "react-icons/ci";
+import { LuCloudSun } from "react-icons/lu";
 import { MdOutlineQuiz } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -57,7 +57,7 @@ function Main() {
     <div class="flex bg-[#190C40] w-screen h-screen overflow-hidden">
       <div class="flex-1 flex items-center justify-center p-12">
         <div>
-          <h1 class="text-8xl font-semibold pb-4 text-white">Hey Jeff!</h1>
+          <h1 class="text-8xl font-semibold pb-4 text-white">Hey <span class="text-[#00BCD4]">Jeff!</span></h1>
           <p className="text-5xl text-white pt-5">
             What can I help you with today?
           </p>
@@ -66,30 +66,30 @@ function Main() {
 
       <div class="flex-1 flex flex-col items-center justify-center gap-10">
         <button
-          onClick={() => navigate("/light")}
-          class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${
-            highlight === "light" ? "ring-8 ring-cyan-500" : ""
-          }`}
+          onClick={() => {
+            navigate("/light");
+          }}
+          class="px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring"
         >
           <HiOutlineLightBulb size="8em" />
           Light
         </button>
 
         <button
-          onClick={() => navigate("/weather")}
-          class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${
-            highlight === "weather" ? "ring-8 ring-cyan-500" : ""
-          }`}
+          onClick={() => {
+            navigate("/weather");
+          }}
+          class="px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring"
         >
-          <CiCloudMoon size="8em" />
+          <LuCloudSun style={{ padding: '8px' }} size="8em"/>
           Weather
         </button>
 
         <button
-          onClick={() => navigate("/quiz")}
-          class={`px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring ${
-            highlight === "quiz" ? "ring-8 ring-cyan-500" : ""
-          }`}
+          onClick={() => {
+            navigate("/quiz");
+          }}
+          class="px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring"
         >
           <MdOutlineQuiz size="8em" />
           Quiz
@@ -98,5 +98,4 @@ function Main() {
     </div>
   );
 }
-
 export default Main;
