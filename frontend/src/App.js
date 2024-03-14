@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import Lamp from "./Lamp/Lamp";
 import Main from "./Main/Main";
 import Weather from "./Weather/Weather";
+import Quiz from "./Quiz/Quiz";
 import { useAtom } from "jotai";
 import { gestureAtom } from "./store";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -41,6 +42,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/weather" element={<Weather />} />
           <Route path="/light" element={<Lamp />} />
+          <Route path="/quiz" element={<Quiz />} />
         </Routes>
       </Router>
     </div>
