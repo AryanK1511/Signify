@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import QuizQuestion from "./QuizQuestion";
 import QuizOption from "./QuizOption";
 import QuizExp from "./QuizExp";
@@ -83,7 +83,7 @@ const Quiz = () => {
   };
 
   // Quiz is over
-  if (currentQuestion == QUESTIONS.length) {
+  if (currentQuestion === QUESTIONS.length) {
     return (
       <div className="p-11 flex flex-col items-center justify-center min-h-screen bg-[#190C40]">
         <QuizQuestion questionText="Thanks for taking the quiz!" />

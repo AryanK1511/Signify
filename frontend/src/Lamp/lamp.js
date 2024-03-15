@@ -70,7 +70,7 @@ const Lamp = () => {
       </div>
       <p className="pt-10">{lampLight}</p>
 
-      <HomeButton customStyle={"mt-24"} />
+      <HomeButton customStyle={"mt-20"} />
     </div>
   );
 };
