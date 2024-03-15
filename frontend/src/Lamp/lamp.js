@@ -22,6 +22,16 @@ const Lamp = () => {
     }
   }, [gesture]);
 
+  // Handle lamp click
+
+  function handleLampClick() {
+    if (lampLight === "OFF") {
+      setLampLight("ON");
+    } else {
+      setLampLight("OFF");
+    }
+  }
+
   // Create a use effect such that whenever the lamplight changes, I call a python script
   return (
     <div
@@ -50,12 +60,17 @@ const Lamp = () => {
       bg-[#D9D9D9]
       rounded-full
       "
+        onClick={() => handleLampClick()}
       >
-        <img src="./images/Main/lamp/light1.png" alt="lamp" className="p-10" />
+        <img
+          src={`./images/Main/lamp/light${lampLight === "ON" ? "2" : "1"}.png`}
+          alt="lamp"
+          className="p-10"
+        />
       </div>
       <p className="pt-10">{lampLight}</p>
 
-      <HomeButton customStyle={"mt-20"} />
+      <HomeButton customStyle={"mt-24"} />
     </div>
   );
 };
