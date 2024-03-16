@@ -27,8 +27,10 @@ const Lamp = () => {
   function handleLampClick() {
     if (lampLight === "OFF") {
       setLampLight("ON");
+      changeLampState("thumb_up");
     } else {
       setLampLight("OFF");
+      changeLampState("thumb_down");
     }
   }
 
