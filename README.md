@@ -1,12 +1,72 @@
 # Signify
 
-Signify is *Alexa for the deaf and mute*. 
+**Signify** is **Alexa for the deaf and mute**. 
 
-It is a machine learning app designed to offer AI assistance to individuals who use American Sign Language (ASL) for communication. It aims to enable seamless interactions with AI assistants through ASL, enhancing accessibility for the deaf community.
+**Signify** is an innovative home assistant platform designed to enhance accessibility through gesture recognition. It allows users to perform various tasks such as controlling lights, checking weather updates, and playing quizzes without the need for direct screen interaction.
+
+## [Link to Youtube Demo](https://youtu.be/h1M6SkJgcqs)
 
 <div align="center">
     <img src="./assets/logo.png" alt="Signify Logo" width="400">
 </div>
+
+## How to use
+
+### Home Page
+
+- **`Thumbs Up` Gesture:** Select the page to control lights using gestures.
+- **`Thumbs Down` Gesture:** Select the page to play the quiz game using gestures.
+- **`Thumbs Up` Gesture:** Select the page to check the weather in your area.
+- **`Rock and Roll Sign`**: Got to the selected page.
+
+### Light Control Page
+
+- **`Thumbs Up` Gesture:** Turn the light `ON` (`OFF` by default).
+- **`Thumbs Down` Gesture:** Turn the light `OFF`.
+- **`Closed Fist` Gesture:** Go back to the home page.
+
+### Quiz Page
+
+- **`Thumbs Up` Gesture:** Select the `true` option.
+- **`Thumbs Down` Gesture:** Select the `false` option.
+- **`Open Palm` Gesture:** Go to the next question if you have answered a question already.
+- **`Closed Fist` Gesture:** Go back to the home page.
+
+### Weather Page
+
+- **`Closed Fist` Gesture:** Go back to the home page.
+
+## Models Overview
+
+### Gesture Recognition
+
+Utilizing MediaPipe for gesture recognition, Signify employs a two-part model approach:
+
+1. **Hand Landmark Model Bundle:**
+- Detects hand presence and geometry.
+- Utilizes a combination of palm detection and hand landmarks detection models.
+- Trained on diverse datasets including real-world images and synthetic models.
+2. **Gesture Classification Model Bundle:**
+- Identifies specific gestures from hand geometry.
+- Supports common gestures like Closed Fist, Open Palm, Thumbs Up, etc.
+
+### Processing Flow
+
+- Frames are captured every 1.3 seconds and sent to the gesture recognition model.
+- The first model component assesses hand presence, while the second classifies the gesture.
+
+## Implementation Details
+
+### Backend
+- A Flask backend processes recognized gestures.
+- Includes functionalities like light control based on the gesture received.
+
+### Frontend
+- React-based frontend displays real-time gesture updates via WebSocket.
+- Implements logic to respond to different gestures for controlling various functions.
+
+### Task Benchmarks
+Pre-trained models offer efficient processing with average latencies of 16.76ms (CPU) and 20.87ms (GPU) on Pixel 6 devices.
 
 ## Running the project locally
 
@@ -105,31 +165,6 @@ Run the operations below using your terminal. The directory should be the root d
     ```bash
     npm start
     ```
-
-## How to use
-
-### Home Page
-
-- **`Thumbs Up` Gesture:** Open up the page to control lights using gestures.
-- **`Thumbs Down` Gesture:** Open up the page to play the quiz game using gestures.
-- **`Thumbs Up` Gesture:** Open up the page to check the weather in your area.
-
-### Light Control Page
-
-- **`Thumbs Up` Gesture:** Turn the light `ON` (`OFF` by default).
-- **`Thumbs Down` Gesture:** Turn the light `OFF`.
-- **`Closed Fist` Gesture:** Go back to the home page.
-
-### Quiz Page
-
-- **`Thumbs Up` Gesture:** Select the `true` option.
-- **`Thumbs Down` Gesture:** Select the `false` option.
-- **`Open Palm` Gesture:** Go to the next question if you have answered a question already.
-- **`Closed Fist` Gesture:** Go back to the home page.
-
-### Weather Page
-
-- **`Closed Fist` Gesture:** Go back to the home page.
 
 ## Tools used
 
