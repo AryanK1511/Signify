@@ -52,7 +52,8 @@ const Weather = () => {
         text-white
         text-center
         text-6xl
-        font-medium"
+        font-medium
+        overflow-hidden"
     >
       {pageLoaded && (
         <>
@@ -60,14 +61,14 @@ const Weather = () => {
             <img
               src={weatherIcons[weather.weather[0].icon]}
               alt="Current weather icon"
-              className="w-[200px]"
+              className="w-[200px] pt-20"
             />
           )}
           {weather && weather.main && (
-            <p className="p-12">{`${Math.round(weather.main.temp)}°C`}</p>
+            <p className="">{`${Math.round(weather.main.temp)}°C`}</p>
           )}
           {weather && weather.name && <p>{weather.name}</p>}
-          <div className="flex pt-10">
+          <div className="flex">
             {weather && weather.main && (
               <WeatherData
                 icon={"./images/Main/weather/humidity.png"}
@@ -85,7 +86,7 @@ const Weather = () => {
               />
             )}
           </div>
-          <HomeButton />
+          <HomeButton customStyle={"mb-36"}/>
         </>
       )}
     </div>
@@ -109,7 +110,6 @@ function WeatherData({ icon, data, metric, title }) {
       flex-col
       items-start
       text-3xl
-      pl-8
       "
       >
         <p>{`${data} ${metric}`}</p>
