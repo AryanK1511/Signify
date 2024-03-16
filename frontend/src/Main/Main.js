@@ -54,22 +54,22 @@ function Main() {
   }
 
   return (
-    <div class="flex bg-[#190C40] w-screen h-screen overflow-hidden">
-      <div class="flex-1 flex items-center justify-center p-12">
+    <div className="flex bg-[#190C40] w-screen h-screen overflow-hidden">
+      <div className="flex-1 flex items-center justify-center p-12">
         <div>
-          <h1 class="text-8xl font-semibold pb-4 text-white">Hey <span class="text-[#00BCD4]">Jeff!</span></h1>
+          <h1 className="text-8xl font-semibold pb-4 text-white">Hey <span className="text-[#00BCD4]">Jeff!</span></h1>
           <p className="text-5xl text-white pt-5">
             What can I help you with today?
           </p>
         </div>
       </div>
 
-      <div class="flex-1 flex flex-col items-center justify-center gap-10">
+      <div className="flex-1 flex flex-col items-center justify-center gap-10">
         <button
           onClick={() => {
             navigate("/light");
           }}
-          class="px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring"
+          className={`px-6 py-3 ${highlight === 'light' ? 'bg-cyan-500' : 'bg-gray-200'} rounded-full shadow focus:outline-none focus:ring`}
         >
           <HiOutlineLightBulb size="8em" />
           Light
@@ -79,9 +79,9 @@ function Main() {
           onClick={() => {
             navigate("/weather");
           }}
-          class="px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring"
+          className={`px-6 py-3 ${highlight === 'weather' ? 'bg-cyan-500' : 'bg-gray-200'} rounded-full shadow focus:outline-none focus:ring`}
         >
-          <LuCloudSun style={{ padding: '8px' }} size="8em"/>
+          <LuCloudSun style={{ padding: '8px' }} size="8em" />
           Weather
         </button>
 
@@ -89,7 +89,7 @@ function Main() {
           onClick={() => {
             navigate("/quiz");
           }}
-          class="px-6 py-3 bg-gray-200 rounded-full shadow focus:outline-none focus:ring"
+          className={`px-6 py-3 ${highlight === 'quiz' ? 'bg-cyan-500' : 'bg-gray-200'} rounded-full shadow focus:outline-none focus:ring`}
         >
           <MdOutlineQuiz size="8em" />
           Quiz
