@@ -175,6 +175,8 @@ Run the operations below using your terminal. The directory should be the root d
 - [Flask](https://flask.palletsprojects.com/)
 - [Jupyter Notebook](https://jupyter-notebook.readthedocs.io/en/stable/)
 - [OpenCV](https://docs.opencv.org/master/)
+- [React.js](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Resources
 
